@@ -1,3 +1,113 @@
-<p>
-  service-twee works!
-</p>
+<head>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script type='text/javascript' src='http://code.jquery.com/jquery.min.js'></script>
+  <script>
+    function myFunction() {
+      document.getElementById("followButton").disabled = true;
+    }
+  </script>
+</head>
+
+
+<div class="col-lg-14 col-sm-14 align-items-center container">
+  <!------ Include the above in your HEAD tag ---------->
+  <div class="col-lg-6 col-sm-6">
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand">Capita Selecta</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class=""><a routerLink="/een">Eerste</a></li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class="active"><a routerLink="/twee">Tweede</a></li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class=""><a routerLink="/drie">Derde</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-log-out" (click)="logout()"></span> Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="card hovercard">
+      <div class="card-background">
+        <img class="card-bkimg" alt="" src="">
+        <!-- http://lorempixel.com/850/280/people/9/ -->
+      </div>
+      <div class="useravatar">
+        <img alt="" src="">
+      </div>
+      <div class="card-info"> <span class="card-title">Ingelogd als: {{naampje}} - Subjects</span>
+
+      </div>
+    </div>
+    <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+      <div class="btn-group" role="group">
+        <button type="button" id="details" class="btn btn-default" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+          <div class="hidden-xs">Aangemelde onderwerpen</div>
+        </button>
+      </div>
+    </div>
+    <div class="well">
+      <div class="tab-content">
+        <div class="tab-pane fade in" id="tab1">
+          <h3>Laadt nieuwstitels bij onderwerpen</h3>
+          <h4>Je laadt de nieuwstitels door op de naam van het onderwerp te klikken</h4>
+          <div class="row">
+            <table class="table">
+              <thead class="thead-inverse">
+              <tr>
+                <th class="text-center">Naam</th>
+                <th class="text-center">Omschrijving</th>
+                <th class="text-center">Leeftijdsgrens</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let post of subjectsArray">
+                <td class="text-center" (click)="getNewsBySubjectName(post.naam)" style="text-decoration: underline blue; color:darkblue; width: 15px;">{{post.naam}}</td>
+                <td class="text-center" style="width: 200px;">{{post.omschrijving}}</td>
+                <td class="text-center" style="width: 200px;">{{post.ageLimit}}</td>
+              </tr>
+              </tbody>
+            </table>
+
+            <table class="table">
+              <thead class="thead-inverse">
+              <tr>
+                <th class="text-center">Niewskop</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let post of newsTitleArray">
+                <td class="text-center" (click)="getContentBySubjectName(post)" style="text-decoration: underline blue; color:darkblue; width: 200px;">{{post}}</td>
+              </tr>
+              </tbody>
+            </table>
+
+            <table class="table">
+              <thead class="thead-inverse">
+              <tr>
+                <th class="text-center">Niewskop</th>
+                <th class="text-center">Inhoud van het artikel</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let post of newsArray">
+                <td class="text-center"  style="text-decoration: underline blue; color:darkblue; width: 200px;">{{post}}</td>
+                <td class="text-center" style="text-decoration: underline blue; color:darkblue; width: 200px;">{{post}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

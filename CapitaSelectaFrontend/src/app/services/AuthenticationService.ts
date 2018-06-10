@@ -24,11 +24,32 @@ export class AuthenticationService {
     const params = new HttpParams()
       .set('name', name)
       .set('password', password);
+    localStorage.setItem('name', name);
     const options = {
       headers,
       params
     };
     return this.http.post<User>(this.loginUrl, null, options);
+  }
+
+  fillDataInTwo(): void {
+    const options = {headers: new HttpHeaders({'Content-Type' : 'application/json'})};
+    console.log(this.http.get('http://localhost:8092/startup'));
+    this.http
+      .get('http://localhost:8092/startup', options)
+      .map(response => {
+      })
+      .catch(this.handleError);
+  }
+
+  fillDataInThree(): void {
+    const options = {headers: new HttpHeaders({'Content-Type' : 'application/json'})};
+    console.log(this.http.get('http://localhost:8094/startup'));
+    this.http
+      .get('http://localhost:8094/startup', options)
+      .map(response => {
+      })
+      .catch(this.handleError);
   }
 
   findMail(mail: string): Observable<User> {
@@ -46,7 +67,11 @@ export class AuthenticationService {
 
   logout(): void {
     // clear token remove user from local storage to log user out
-    localStorage.removeItem('userName');
+    localStorage.removeItem('name');
+  }
+
+  private handleError(error: Response) {
+    return Observable.throw(error.statusText);
   }
 
 }

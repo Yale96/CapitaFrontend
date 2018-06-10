@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../Models/User';
 import {AuthenticationService} from '../services/AuthenticationService';
+import {HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {Subject} from '../Models/Subject';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +23,16 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.authenticationService.logout();
+    this.fillTwo();
+    this.fillThree();
+  }
+
+  fillTwo(): void {
+    this.authenticationService.fillDataInTwo();
+  }
+
+  fillThree(): void {
+    this.authenticationService.fillDataInThree();
   }
 
   login(email: string, password: string) {
@@ -28,7 +41,8 @@ export class LoginComponent implements OnInit {
       .subscribe(result => {
         if (result != null) {
           this.user = result;
-          localStorage.setItem('name', this.user.name);
+          this.fillTwo();
+          this.fillThree();
             window.location.href = '/een';
         } else {
           this.error = 'Username or password is incorrect';
