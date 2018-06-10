@@ -57,6 +57,20 @@ export class FirstService {
     return this.http.post<User>(this.apiUrl + '/users/addSubjectToUser', null, options);
   }
 
+  unsubscribeToSubject(subject: any): Observable<User> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    const params = new HttpParams()
+      .set('name', this.name)
+      .set('subject', subject);
+    const options = {
+      headers,
+      params
+    };
+    return this.http.post<User>(this.apiUrl + '/users/removeSubjectFromUser', null, options);
+  }
+
   private handleError(error: Response) {
     return Observable.throw(error.statusText);
   }

@@ -8,9 +8,9 @@ import {ServiceDrieComponent} from './service-drie/service-drie.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent},
-  { path: 'een', component: ServiceEenComponent},
-  { path: 'twee', component: ServiceTweeComponent},
-  { path: 'drie', component: ServiceDrieComponent},
+  { path: 'Onderwerpen', component: ServiceEenComponent},
+  { path: 'Artikelen', component: ServiceTweeComponent},
+  { path: 'Aanbevelingen', component: ServiceDrieComponent},
 
 ];
 

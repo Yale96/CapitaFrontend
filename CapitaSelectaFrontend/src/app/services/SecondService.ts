@@ -17,7 +17,7 @@ export class SecondService {
     // set token if saved in local storage
     // console.log('CURRENT USERT::::: ' + localStorage.getItem('currentUser'));
     // const currentUser = localStorage.getItem('currentUser');
-
+    // http://localhost:8092/users/refresh
     // this.token = localStorage.getItem('token');
     this.name = localStorage.getItem('name');
 
@@ -35,9 +35,21 @@ export class SecondService {
       .catch(this.handleError);
   }
 
+  refreshTwo(): void {
+    const options = {headers: new HttpHeaders({'Content-Type' : 'application/json'})};
+    console.log(this.http.get('http://localhost:8092/users/refresh'));
+    this.http
+      .get('http://localhost:8092/users/refresh', options)
+      .map(response => {
+        const subjects = response;
+        return subjects;
+      })
+      .catch(this.handleError);
+  }
+
   getAllSubjectsByName(): Observable<Subject[]> {
     const options = {headers: new HttpHeaders({'Content-Type' : 'application/json'})};
-    console.log(this.http.get('http://localhost:8090/users/getAllByName?naam=' + this.name));
+    console.log(this.http.get('http://localhost:8092/users/getAllByName?naam=' + this.name));
     return this.http
       .get('http://localhost:8092/subjects/getAllByName?naam=' + this.name, options)
       .map(response => {
@@ -47,7 +59,7 @@ export class SecondService {
       .catch(this.handleError);
   }
 
-  getAllNewsTitlesBySubject(naam: string): Observable<String[]> {
+  getAllNewsTitlesBySubject(naam: string): Observable<News[]> {
     const options = {headers: new HttpHeaders({'Content-Type' : 'application/json'})};
     console.log(this.http.get('http://localhost:8092/news/findNewsBySubject?naam=' + naam));
     return this.http
@@ -59,12 +71,12 @@ export class SecondService {
       .catch(this.handleError);
   }
 
-  getContentBYTitle(naam: string): Observable<News[]> {
+  getContentBYTitle(naam: number): Observable<News> {
     const options = {headers: new HttpHeaders({'Content-Type' : 'application/json'})};
     this.url = decodeURIComponent('http://localhost:8092/news/findNewsBySubject?naam=' + naam)
     console.log(this.http.get(this.url));
     return this.http
-      .get('http://localhost:8092/news/findNewsByTitle?titel=' + naam, options)
+      .get('http://localhost:8092/news/findNewsByTitle?id=' + naam, options)
       .map(response => {
         const subjects = response;
         return subjects;

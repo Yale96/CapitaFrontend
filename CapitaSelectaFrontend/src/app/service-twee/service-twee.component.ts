@@ -14,16 +14,18 @@ import {News} from '../Models/News';
 })
 export class ServiceTweeComponent implements OnInit {
   subjectsArray: Subject[] = [];
-  newsTitleArray: String[] = [];
-  newsArray: News[] = [];
+  newsTitleArray: News[] = [];
+  newsArray: News;
   ownSubjectsArray: Subject[] = [];
   errorMessage: string;
   naampje = localStorage.getItem('name');
+  naam: string;
 
   constructor(private secondService: SecondService, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     this.getPosts();
+    this.secondService.refreshTwo();
   }
 
   logout() {
@@ -52,12 +54,12 @@ export class ServiceTweeComponent implements OnInit {
       );
   }
 
-  getContentBySubjectName(naam: string): void {
+  getContentBySubjectName(naam: number): void {
     this.secondService.getContentBYTitle(naam)
       .subscribe(
         (subjects) => {
           this.newsArray = subjects;
-          console.log("POST ARRAY:::::::::::::::: " + this.subjectsArray);
+          console.log("POST ARRAY:::::::::::::::: " + this.newsArray);
         },
         error => console.log("Error :: " + error)
       );

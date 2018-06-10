@@ -70,4 +70,10 @@ export class ServiceDrieComponent implements OnInit {
         error => this.errorMessage = <any>error);
     // this.getPostss();
   }
+
+  newHero() {
+    this.model = new Aanbeveling();
+    this.createAanbeveling(this.model.to.name, this.model.subject.naam, this.model.waarom);
+  }
+
 }

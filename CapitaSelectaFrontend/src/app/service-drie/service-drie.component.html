@@ -20,13 +20,13 @@
           <a class="navbar-brand">Capita Selecta</a>
         </div>
         <ul class="nav navbar-nav">
-          <li class=""><a routerLink="/een">Eerste</a></li>
+          <li class=""><a routerLink="/Onderwerpen">Onderwerpen</a></li>
         </ul>
         <ul class="nav navbar-nav">
-          <li class=""><a routerLink="/twee">Tweede</a></li>
+          <li class=""><a routerLink="/Artikelen">Artikelen</a></li>
         </ul>
         <ul class="nav navbar-nav">
-          <li class="active"><a routerLink="/drie">Derde</a></li>
+          <li class="active"><a routerLink="/Aanbevelingen">Aanbevelingen</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#"><span class="glyphicon glyphicon-log-out" (click)="logout()"></span> Logout</a></li>
@@ -35,13 +35,13 @@
     </nav>
     <div class="card hovercard">
       <div class="card-background">
-        <img class="card-bkimg" alt="" src="">
+        <img class="card-bkimg" alt="" src="https://www.eglsf.info/wp-content/uploads/submit_news.jpg">
         <!-- http://lorempixel.com/850/280/people/9/ -->
       </div>
       <div class="useravatar">
-        <img alt="" src="">
+        <img alt="" src="https://www.vhz.nu/wp-content/uploads/2015/03/nieuws.png">
       </div>
-      <div class="card-info"> <span class="card-title">Ingelogd als: {{naampje}} - Subjects</span>
+      <div class="card-info"> <span class="card-title">{{naampje}} - Aanbevelingen</span>
 
       </div>
     </div>
@@ -83,12 +83,12 @@
 
         <div class="tab-pane fade in" id="tab2">
           <h3>Doe een aanbeveling aan een vriend</h3>
-          <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+          <form (ngSubmit)="onSubmit()" #aanbevelingsForm="ngForm">
           <div class="form-group">
             <label for="power">Aan wie:</label>
-            <select class="form-control"  id="power"
+            <select class="form-control"  id="power" #to
                     required
-                    [(ngModel)]="model.to" name="power" #to>
+                    [(ngModel)]="model.to" name="power" >
               <option *ngFor="let pow of userArray" [value]="pow">{{pow.name}}</option>
             </select>
           </div>
@@ -106,7 +106,7 @@
               <label for="name">Waarom?</label>
               <input type="text" class="form-control" id="name" required #waarom>
             </div>
-            <button type="button" class="btn btn-default" (click)="createAanbeveling(model.to.name, model.subject.naam, waarom.value); heroForm.reset()">Plaats</button>
+            <button type="button" class="btn btn-default" (click)="newHero(); aanbevelingsForm.reset()">Plaats</button>
           </form>
           </div>
       </div>

@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
           this.user = result;
           this.fillTwo();
           this.fillThree();
-            window.location.href = '/een';
+            window.location.href = '/Onderwerpen';
         } else {
           this.error = 'Username or password is incorrect';
           this.loading = false;

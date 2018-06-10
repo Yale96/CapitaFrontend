@@ -56,6 +56,14 @@ export class ServiceEenComponent implements OnInit {
         },
         error => this.errorMessage = <any>error);
     this.getOwnSubjects();
-    // this.getPostss();
+  }
+
+  removeSubject(string: string): void {
+    string = string.replace('#', '%23');
+    this.firstService.unsubscribeToSubject(string)
+      .subscribe( tweett => {
+        },
+        error => this.errorMessage = <any>error);
+    this.getOwnSubjects();
   }
 }

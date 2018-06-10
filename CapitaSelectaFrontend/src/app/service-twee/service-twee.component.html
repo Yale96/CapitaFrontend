@@ -20,13 +20,13 @@
           <a class="navbar-brand">Capita Selecta</a>
         </div>
         <ul class="nav navbar-nav">
-          <li class=""><a routerLink="/een">Eerste</a></li>
+          <li class=""><a routerLink="/Onderwerpen">Onderwerpen</a></li>
         </ul>
         <ul class="nav navbar-nav">
-          <li class="active"><a routerLink="/twee">Tweede</a></li>
+          <li class="active"><a routerLink="/Artikelen">Artikelen</a></li>
         </ul>
         <ul class="nav navbar-nav">
-          <li class=""><a routerLink="/drie">Derde</a></li>
+          <li class=""><a routerLink="/Aanbevelingen">Aanbevelingen</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#"><span class="glyphicon glyphicon-log-out" (click)="logout()"></span> Logout</a></li>
@@ -35,20 +35,20 @@
     </nav>
     <div class="card hovercard">
       <div class="card-background">
-        <img class="card-bkimg" alt="" src="">
+        <img class="card-bkimg" alt="" src="https://www.eglsf.info/wp-content/uploads/submit_news.jpg">
         <!-- http://lorempixel.com/850/280/people/9/ -->
       </div>
       <div class="useravatar">
-        <img alt="" src="">
+        <img alt="" src="https://www.vhz.nu/wp-content/uploads/2015/03/nieuws.png">
       </div>
-      <div class="card-info"> <span class="card-title">Ingelogd als: {{naampje}} - Subjects</span>
+      <div class="card-info"> <span class="card-title">{{naampje}} - Nieuwsartikelen</span>
 
       </div>
     </div>
     <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
       <div class="btn-group" role="group">
         <button type="button" id="details" class="btn btn-default" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-          <div class="hidden-xs">Aangemelde onderwerpen</div>
+          <div class="hidden-xs">Artikelen lezen</div>
         </button>
       </div>
     </div>
@@ -56,7 +56,7 @@
       <div class="tab-content">
         <div class="tab-pane fade in" id="tab1">
           <h3>Laadt nieuwstitels bij onderwerpen</h3>
-          <h4>Je laadt de nieuwstitels door op de naam van het onderwerp te klikken</h4>
+          <h4>Je laadt de nieuwstitels door op de naam van het onderwerp te klikken.</h4>
           <div class="row">
             <table class="table">
               <thead class="thead-inverse">
@@ -74,16 +74,20 @@
               </tr>
               </tbody>
             </table>
-
+            <br>
+            <h4>Klik op het artikelnummer om de inhoud te lezen.</h4>
+            <br>
             <table class="table">
               <thead class="thead-inverse">
               <tr>
+                <th class="text-center">Nummer van het Artikel</th>
                 <th class="text-center">Niewskop</th>
               </tr>
               </thead>
               <tbody>
               <tr *ngFor="let post of newsTitleArray">
-                <td class="text-center" (click)="getContentBySubjectName(post)" style="text-decoration: underline blue; color:darkblue; width: 200px;">{{post}}</td>
+                <td class="text-center" (click)="getContentBySubjectName(post.id)" style="text-decoration: underline blue; color:darkblue; width: 200px;">{{post.id}}</td>
+                <td class="text-center" style="width: 200px;">{{post.titel}}</td>
               </tr>
               </tbody>
             </table>
@@ -96,9 +100,9 @@
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let post of newsArray">
-                <td class="text-center"  style="text-decoration: underline blue; color:darkblue; width: 200px;">{{post}}</td>
-                <td class="text-center" style="text-decoration: underline blue; color:darkblue; width: 200px;">{{post}}</td>
+              <tr>
+                <td class="text-center"  style="width: 200px;">{{newsArray.titel}}</td>
+                <td class="text-center" style="width: 200px;">{{newsArray.content}}</td>
               </tr>
               </tbody>
             </table>
