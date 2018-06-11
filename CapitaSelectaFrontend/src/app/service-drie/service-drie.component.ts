@@ -19,8 +19,9 @@ export class ServiceDrieComponent implements OnInit {
   userArray: User[] = [];
   subjectArray: Subject[] = [];
   errorMessage: string;
-  model = new Aanbeveling();
   naampje = localStorage.getItem('name');
+  selectedUser: string;
+  selectedSub: string;
 
   constructor(private thirdService: ThirdService, private authenticationService: AuthenticationService) { }
 
@@ -69,11 +70,6 @@ export class ServiceDrieComponent implements OnInit {
         },
         error => this.errorMessage = <any>error);
     // this.getPostss();
-  }
-
-  newHero() {
-    this.model = new Aanbeveling();
-    this.createAanbeveling(this.model.to.name, this.model.subject.naam, this.model.waarom);
   }
 
 }
