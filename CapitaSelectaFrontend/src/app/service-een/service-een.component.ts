@@ -12,6 +12,7 @@ import {AuthenticationService} from '../services/AuthenticationService';
 export class ServiceEenComponent implements OnInit {
   subjectsArray: Subject[] = [];
   ownSubjectsArray: Subject[] = [];
+  notsubjectsArray: Subject[] = [];
   errorMessage: string;
   naampje = localStorage.getItem('name');
 
@@ -21,6 +22,7 @@ export class ServiceEenComponent implements OnInit {
     console.log('OPGESLAGEN NAAM:::: ' + localStorage.getItem('name'));
     this.getPosts();
     this.getOwnSubjects();
+    this.getNot();
   }
 
   logout() {
@@ -33,6 +35,17 @@ export class ServiceEenComponent implements OnInit {
         (subjects) => {
           this.subjectsArray = subjects;
           console.log("POST ARRAY:::::::::::::::: " + this.subjectsArray);
+        },
+        error => console.log("Error :: " + error)
+      );
+  }
+
+  getNot(): void {
+    this.firstService.getNotFollowing()
+      .subscribe(
+        (subjects) => {
+          this.notsubjectsArray = subjects;
+          console.log("POST ARRAY:::::::::::::::: " + this.notsubjectsArray);
         },
         error => console.log("Error :: " + error)
       );
@@ -56,6 +69,7 @@ export class ServiceEenComponent implements OnInit {
         },
         error => this.errorMessage = <any>error);
     this.getOwnSubjects();
+    this.getNot();
   }
 
   removeSubject(string: string): void {
@@ -65,5 +79,6 @@ export class ServiceEenComponent implements OnInit {
         },
         error => this.errorMessage = <any>error);
     this.getOwnSubjects();
+    this.getNot();
   }
 }

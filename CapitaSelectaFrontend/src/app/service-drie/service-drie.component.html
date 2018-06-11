@@ -75,6 +75,7 @@
                 <td class="text-center" style="width: 15px;">{{post.from}}</td>
                 <td class="text-center" style="width: 200px;">{{post.subject}}</td>
                 <td class="text-center" style="width: 200px;">{{post.waarom}}</td>
+                <td style="width: 15px; align-content: center"><button type="button" class="btn btn-default center-block text-center glyphicon glyphicon-plus" (click)="addSubject(post.subject);"></button></td>
               </tr>
               </tbody>
             </table>
@@ -84,29 +85,21 @@
         <div class="tab-pane fade in" id="tab2">
           <h3>Doe een aanbeveling aan een vriend</h3>
           <form (ngSubmit)="onSubmit()" #aanbevelingsForm="ngForm">
-          <div class="form-group">
-            <label for="us">Aan wie:</label>
-            <select class="form-control"  [(ngModel)]="selectedUser" id="us"
-                    required
-                     name="power" >
-              <option *ngFor="let user of userArray" [value]="user">{{user.name}}</option>
-            </select>
-          </div>
+            <div class="form-group">
+              <label for="name">Aan wie?</label>
+              <input type="text" class="form-control" id="name" required #uName>
+            </div>
 
             <div class="form-group">
-              <label for="sub">Onderwerp:</label>
-              <select class="form-control"  [(ngModel)]="selectedSub" id="sub"
-                      required
-                      [(ngModel)]="model.subject" name="test" #subject>
-                <option *ngFor="let pow of subjectArray" [value]="pow">{{pow.naam}}</option>
-              </select>
+              <label for="name">Aan te bevelen onderwerp:</label>
+              <input type="text" class="form-control" id="name" required #subName>
             </div>
 
             <div class="form-group">
               <label for="name">Waarom?</label>
               <input type="text" class="form-control" id="name" required #waarom>
             </div>
-            <button type="button" class="btn btn-default" (click)="createAanbeveling(selectedUser, selectedSub, waarom.value); aanbevelingsForm.reset()">Plaats</button>
+            <button type="button" class="btn btn-default" (click)="createAanbeveling(uName.value, subName.value, waarom.value); aanbevelingsForm.reset()">Plaats</button>
           </form>
           </div>
       </div>

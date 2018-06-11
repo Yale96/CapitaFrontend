@@ -74,6 +74,31 @@ export class ThirdService {
     return this.http.post<Aanbeveling>('http://localhost:8094/aanbevelingen/create', null, options);
   }
 
+  // http://localhost:8090/users/refresh?naam=
+
+  refreshSubs(): Observable<User> {
+    const options = {headers: new HttpHeaders({'Content-Type' : 'application/json'})};
+    console.log(this.http.get('http://localhost:8090/users/refresh?naam=' + this.name));
+     return this.http
+      .get('http://localhost:8090/users/refresh?naam=' + this.name , options)
+      .map(response => {
+      })
+      .catch(this.handleError);
+  }
+
+  subscribeToSubject(subject: any): Observable<User> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    const params = new HttpParams()
+      .set('name', this.name)
+      .set('subject', subject);
+    const options = {
+      headers,
+      params
+    };
+    return this.http.post<User>(this.apiUrl + '/users/addSubjectToUser', null, options);
+  }
 
   private handleError(error: Response) {
     return Observable.throw(error.statusText);

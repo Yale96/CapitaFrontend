@@ -111,7 +111,7 @@
         </div>
 
         <div class="tab-pane fade in" id="tab3">
-          <h3>Aanmelden/afmelden op onderwerpen</h3>
+          <h3>Aanmelden op onderwerpen</h3>
           <h4>Je meldt je aan door op de naam van het onderwerp te klikken</h4>
           <div class="row">
             <table class="table">
@@ -121,11 +121,10 @@
                 <th class="text-center">Omschrijving</th>
                 <th class="text-center">Leeftijdsgrens</th>
                 <th class="text-center">Aanmelden op onderwerp</th>
-
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let post of subjectsArray;">
+              <tr *ngFor="let post of notsubjectsArray;">
                 <td class="text-center" style="width: 15px;">{{post.naam}}</td>
                 <td class="text-center" style="width: 200px;">{{post.omschrijving}}</td>
                 <td class="text-center" style="width: 200px;">{{post.ageLimit}}</td>
