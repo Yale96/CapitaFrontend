@@ -35,7 +35,7 @@ export class FirstService {
     const options = {headers: new HttpHeaders({'Content-Type' : 'application/json'})};
     console.log(this.http.get('http://localhost:8090/users/getNotFollowing?naam=' + this.name));
     return this.http
-      .get(this.apiUrl + '/subjects', options)
+      .get('http://localhost:8090/users/getNotFollowing?naam=' + this.name, options)
       .map(response => {
         const subjects = response;
         return subjects;

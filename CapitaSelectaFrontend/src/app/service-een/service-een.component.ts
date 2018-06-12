@@ -44,6 +44,7 @@ export class ServiceEenComponent implements OnInit {
     this.firstService.getNotFollowing()
       .subscribe(
         (subjects) => {
+          this.notsubjectsArray = [];
           this.notsubjectsArray = subjects;
           console.log("POST ARRAY:::::::::::::::: " + this.notsubjectsArray);
         },
